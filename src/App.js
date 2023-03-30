@@ -1,41 +1,35 @@
+import "./categories.styles.scss";
+import CategoryItem from "./components/category-item";
+
 function App() {
+  const categories = [
+    {
+      id: "1",
+      title: "Hats",
+    },
+    {
+      id: "2",
+      title: "Jackets",
+    },
+    {
+      id: "3",
+      title: "Sneakers",
+    },
+    {
+      id: "4",
+      title: "Women",
+    },
+    {
+      id: "5",
+      title: "Men",
+    },
+  ];
+
   return (
     <div className="categories-container">
-      <div className="category-container">
-        {/* <img src="" alt="" /> */}
-        <div className="category-body-container">
-          <h2>Hats</h2>
-          <p>Shop Now</p>
-        </div>
-      </div>
-      <div className="category-container">
-        {/* <img src="" alt="" /> */}
-        <div className="category-body-container">
-          <h2>Jackets</h2>
-          <p>Shop Now</p>
-        </div>
-      </div>
-      <div className="category-container">
-        {/* <img src="" alt="" /> */}
-        <div className="category-body-container">
-          <h2>Sneakers</h2>
-          <p>Shop Now</p>
-        </div>
-      </div>
-      <div className="category-container">
-        {/* <img src="" alt="" /> */}
-        <div className="category-body-container">
-          <h2>Women</h2>
-          <p>Shop Now</p>
-        </div>
-      </div>
-      <div className="category-container">
-        {/* <img src="" alt="" /> */}
-        <div className="category-body-container">
-          <h2>Men</h2>
-          <p>Shop Now</p>
-        </div>
-      </div>
+      {categories.map((category) => (
+        <CategoryItem key={category.id} category={category} />
+      ))}
     </div>
   );
 }
