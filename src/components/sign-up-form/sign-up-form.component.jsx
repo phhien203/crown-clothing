@@ -14,7 +14,7 @@ export const defaultFormValue = {
   confirmPassword: "",
 };
 
-export default function SignUpFormComponent() {
+export default function SignUpForm() {
   const [formValue, setFormValue] = React.useState(defaultFormValue);
   const { displayName, email, password, confirmPassword } = formValue;
 
@@ -48,7 +48,7 @@ export default function SignUpFormComponent() {
   }
 
   return (
-    <div className="sign-up-container">
+    <div className="sign-up-form-container">
       <h2>Don't have an account?</h2>
       <span>Sign up with username and password</span>
 

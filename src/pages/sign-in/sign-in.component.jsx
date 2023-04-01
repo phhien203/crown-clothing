@@ -1,22 +1,17 @@
-import {
-  createUserProfileDocument,
-  signInWithGooglePopup,
-} from "../../utils/firebase/firebase.utils";
-import SignUpForm from "../../components/sign-up-form/sign-up-form.component";
+import SignInForm from "../../components/sign-in-form/sign-in-form.component";
+import { Link } from "react-router-dom";
+import "./sign-in.styles.scss";
 
 export default function SignIn() {
-  async function signInWithGoogle() {
-    const { user } = await signInWithGooglePopup();
-    const userDocRef = await createUserProfileDocument(user);
-    console.log(userDocRef);
-  }
-
   return (
-    <div>
-      <h1>I'm sign in page</h1>
-      <button onClick={signInWithGoogle}>Sign in with Google</button>
-
-      <SignUpForm />
+    <div className="sign-in-container">
+      <SignInForm />
+      <p className="sign-up-link-container">
+        Don't have an account?{" "}
+        <Link className="sign-up-link" to="/sign-up">
+          Sign Up
+        </Link>
+      </p>
     </div>
   );
 }
