@@ -2,10 +2,16 @@ import React from "react";
 import { Link, Outlet } from "react-router-dom";
 import { ReactComponent as CrownLogo } from "../../assets/crown.svg";
 import { UserContext } from "../../contexts/user.context";
+import { signUserOut } from "../../utils/firebase/firebase.utils";
 import "./navigation.styles.scss";
 
 export default function Navigation() {
-  const { currentUser } = React.useContext(UserContext);
+  const { currentUser, setCurrentUser } = React.useContext(UserContext);
+
+  async function handleSignOut() {
+    await signUserOut();
+    setCurrentUser(null);
+  }
 
   return (
     <>
@@ -19,9 +25,9 @@ export default function Navigation() {
             SHOP
           </Link>
           {currentUser ? (
-            <Link className="nav-link" to="/sign-in">
-              LOGOUT
-            </Link>
+            <span className="nav-link" onClick={handleSignOut}>
+              SIGN OUT
+            </span>
           ) : (
             <Link className="nav-link" to="/sign-in">
               SIGN IN
