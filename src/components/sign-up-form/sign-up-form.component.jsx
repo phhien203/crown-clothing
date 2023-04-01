@@ -4,6 +4,8 @@ import {
   createUserProfileDocument,
 } from "../../utils/firebase/firebase.utils";
 import FormInput from "../form-input/form-input.component";
+import Button from "../button/button.component";
+import "./sign-up-form.styles.scss";
 
 export const defaultFormValue = {
   displayName: "",
@@ -13,7 +15,6 @@ export const defaultFormValue = {
 };
 
 export default function SignUpFormComponent() {
-  const id = React.useId();
   const [formValue, setFormValue] = React.useState(defaultFormValue);
   const { displayName, email, password, confirmPassword } = formValue;
 
@@ -47,8 +48,9 @@ export default function SignUpFormComponent() {
   }
 
   return (
-    <div>
-      <h1>Sign up with username and password</h1>
+    <div className="sign-up-container">
+      <h2>Don't have an account?</h2>
+      <span>Sign up with username and password</span>
 
       <form onSubmit={handleSubmit}>
         <FormInput
@@ -87,7 +89,7 @@ export default function SignUpFormComponent() {
           onChange={handleChange}
         />
 
-        <button type="submit">Signup</button>
+        <Button type="submit">Sign Up</Button>
       </form>
     </div>
   );
