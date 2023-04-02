@@ -20,11 +20,21 @@ export const CartContext = React.createContext({
   setIsCartOpen: () => {},
   cartItems: [],
   addItemToCart: () => {},
+  cartItemCount: 0,
 });
 
 export function CartProvider({ children }) {
   const [isCartOpen, setIsCartOpen] = React.useState(false);
   const [cartItems, setCartItems] = React.useState([]);
+  const [cartItemCount, setCartItemCount] = React.useState(0);
+
+  React.useEffect(() => {
+    const newCartCount = cartItems.reduce(
+      (totalItems, cartItem) => totalItems + cartItem.quantity,
+      0
+    );
+    setCartItemCount(newCartCount);
+  }, [cartItems]);
 
   function addItemToCart(productToAdd) {
     setCartItems(addProductToCartItems(productToAdd, cartItems));
@@ -32,7 +42,13 @@ export function CartProvider({ children }) {
 
   return (
     <CartContext.Provider
-      value={{ isCartOpen, setIsCartOpen, cartItems, addItemToCart }}
+      value={{
+        isCartOpen,
+        setIsCartOpen,
+        cartItems,
+        addItemToCart,
+        cartItemCount,
+      }}
     >
       {children}
     </CartContext.Provider>
