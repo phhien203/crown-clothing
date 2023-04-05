@@ -1,10 +1,11 @@
+import { Link } from "react-router-dom";
 import "./directory-item.styles.scss";
 
-export default function DirectoryItem({ category }) {
+export default function DirectoryItem({ url, category }) {
   const { imageUrl, title } = category;
 
   return (
-    <div className="directory-item-container">
+    <Link to={url} className="directory-item-container">
       <div
         className="background-image"
         style={{ backgroundImage: `url(${imageUrl})` }}
@@ -14,6 +15,6 @@ export default function DirectoryItem({ category }) {
         <h2>{title}</h2>
         <p>Shop Now</p>
       </div>
-    </div>
+    </Link>
   );
 }
