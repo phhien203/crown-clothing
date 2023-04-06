@@ -1,7 +1,7 @@
 import React from "react";
 import { ReactComponent as ShoppingIcon } from "../../assets/shopping-bag.svg";
 import { CartContext } from "../../contexts/cart.context";
-import "./cart-icon.styles.scss";
+import { CartIconContainer, ItemCount } from "./cart-icon.styles";
 
 export default function CartIcon() {
   const { isCartOpen, setIsCartOpen, cartItemCount } =
@@ -12,9 +12,9 @@ export default function CartIcon() {
   }
 
   return (
-    <div className="cart-icon-container" onClick={toggle}>
+    <CartIconContainer onClick={toggle}>
       <ShoppingIcon />
-      <span className="item-count">{cartItemCount}</span>
-    </div>
+      <ItemCount>{cartItemCount}</ItemCount>
+    </CartIconContainer>
   );
 }
