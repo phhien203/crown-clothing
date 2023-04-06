@@ -3,6 +3,7 @@ import {
   createUserProfileDocument,
   onAuthStateChangeListener,
 } from "../utils/firebase/firebase.utils";
+import { createAction } from "../utils/reducer/reducer.utils";
 
 export const UserContext = React.createContext({
   currentUser: null,
@@ -38,7 +39,7 @@ export function UserProvider({ children }) {
   );
 
   function setCurrentUser(user) {
-    dispatch({ type: USER_ACTION_TYPE.SET_CURRENT_USER, payload: user });
+    dispatch(createAction(USER_ACTION_TYPE.SET_CURRENT_USER, user));
   }
 
   React.useEffect(() => {
