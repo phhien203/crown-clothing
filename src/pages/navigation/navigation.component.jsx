@@ -4,7 +4,7 @@ import { Outlet } from "react-router-dom";
 import { ReactComponent as CrownLogo } from "../../assets/crown.svg";
 import CartDropdown from "../../components/cart-dropdown/cart-dropdown.component";
 import CartIcon from "../../components/cart-icon/cart-icon.component";
-import { CartContext } from "../../contexts/cart.context";
+import { selectIsCartOpen } from "../../store/cart/cart.selector";
 import { selectCurrentUser } from "../../store/user/user.selector";
 import { signUserOut } from "../../utils/firebase/firebase.utils";
 import {
@@ -15,8 +15,8 @@ import {
 } from "./navigation.styles";
 
 export default function Navigation() {
+  const isCartOpen = useSelector(selectIsCartOpen);
   const currentUser = useSelector(selectCurrentUser);
-  const { isCartOpen } = React.useContext(CartContext);
 
   async function handleSignOut() {
     await signUserOut();

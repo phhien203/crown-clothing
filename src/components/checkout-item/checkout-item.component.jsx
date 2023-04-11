@@ -1,11 +1,17 @@
 import React from "react";
-import { CartContext } from "../../contexts/cart.context";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  addItemToCart,
+  clearItemFromCart,
+  removeItemFromCart,
+} from "../../store/cart/cart.action";
+import { selectCartItems } from "../../store/cart/cart.selector";
 import "./checkout-item.styles.scss";
 
 export default function CheckoutItem({ cartItem }) {
+  const dispatch = useDispatch();
+  const cartItems = useSelector(selectCartItems);
   const { name, price, imageUrl, quantity } = cartItem;
-  const { addItemToCart, removeItemFromCart, clearItemFromCart } =
-    React.useContext(CartContext);
 
   return (
     <article className="checkout-item-container">
@@ -16,11 +22,17 @@ export default function CheckoutItem({ cartItem }) {
       <span className="name">{name}</span>
 
       <span className="quantity">
-        <span className="arrow" onClick={() => removeItemFromCart(cartItem)}>
+        <span
+          className="arrow"
+          onClick={() => dispatch(removeItemFromCart(cartItems, cartItem))}
+        >
           &#10094;
         </span>
         <span className="value">{quantity}</span>
-        <span className="arrow" onClick={() => addItemToCart(cartItem)}>
+        <span
+          className="arrow"
+          onClick={() => dispatch(addItemToCart(cartItems, cartItem))}
+        >
           &#10095;
         </span>
       </span>
@@ -29,7 +41,7 @@ export default function CheckoutItem({ cartItem }) {
 
       <div
         className="remove-button"
-        onClick={() => clearItemFromCart(cartItem)}
+        onClick={() => dispatch(clearItemFromCart(cartItems, cartItem))}
       >
         &#10005;
       </div>
