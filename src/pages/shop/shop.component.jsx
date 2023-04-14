@@ -1,8 +1,7 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import { Route, Routes } from "react-router-dom";
-import { setCategoriesList } from "../../store/categories/categories.action";
-import { getCategoriesAndDocuments } from "../../utils/firebase/firebase.utils";
+import { fetchCategoriesAsync } from "../../store/categories/categories.action";
 import CategoriesPreview from "../categories-preview/categories-preview.component";
 import Category from "../category/category.component";
 import "./shop.styles.scss";
@@ -11,11 +10,7 @@ export default function Shop() {
   const dispatch = useDispatch();
 
   React.useEffect(() => {
-    async function doEffect() {
-      const categoryList = await getCategoriesAndDocuments();
-      dispatch(setCategoriesList(categoryList));
-    }
-    doEffect();
+    dispatch(fetchCategoriesAsync());
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

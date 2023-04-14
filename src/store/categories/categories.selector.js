@@ -19,3 +19,10 @@ export const selectCategoriesMap = createSelector(
     }, {});
   }
 );
+
+export const selectCategoriesIsLoading = createSelector(
+  [selectCategories],
+  (categories) => {
+    return categories.isLoading;
+  }
+);
