@@ -1,7 +1,7 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import { Route, Routes } from "react-router-dom";
-import { fetchCategoriesAsync } from "../../store/categories/categories.action";
+import { fetchCategoriesStart } from "../../store/categories/categories.action";
 import CategoriesPreview from "../categories-preview/categories-preview.component";
 import Category from "../category/category.component";
 import "./shop.styles.scss";
@@ -10,7 +10,7 @@ export default function Shop() {
   const dispatch = useDispatch();
 
   React.useEffect(() => {
-    dispatch(fetchCategoriesAsync());
+    dispatch(fetchCategoriesStart());
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
