@@ -46,3 +46,15 @@ export function signUpSuccess(user, additionalDetails) {
 export function signUpFailed(error) {
   return createAction(USER_ACTION_TYPE.SIGN_UP_FAILED, error);
 }
+
+export function signOutStart() {
+  return createAction(USER_ACTION_TYPE.SIGN_OUT_START);
+}
+
+export function signOutSuccess() {
+  return createAction(USER_ACTION_TYPE.SIGN_OUT_SUCCESS);
+}
+
+export function signOutFailed(err) {
+  return createAction(USER_ACTION_TYPE.SIGN_OUT_FAILED, err);
+}
