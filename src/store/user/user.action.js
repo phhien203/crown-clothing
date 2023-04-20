@@ -27,3 +27,22 @@ export function signInSuccess(user) {
 export function signInFailed(error) {
   return createAction(USER_ACTION_TYPE.SIGN_IN_FAILED, error);
 }
+
+export function signUpStart(email, password, displayName) {
+  return createAction(USER_ACTION_TYPE.SIGN_UP_START, {
+    email,
+    password,
+    displayName,
+  });
+}
+
+export function signUpSuccess(user, additionalDetails) {
+  return createAction(USER_ACTION_TYPE.SIGN_UP_SUCCESS, {
+    user,
+    additionalDetails,
+  });
+}
+
+export function signUpFailed(error) {
+  return createAction(USER_ACTION_TYPE.SIGN_UP_FAILED, error);
+}
