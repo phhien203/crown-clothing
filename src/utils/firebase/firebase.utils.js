@@ -63,7 +63,7 @@ export const createUserProfileDocument = async (
     }
   }
 
-  return userDocRef;
+  return userSnapshot;
 };
 
 export const createAuthUserWithEmailAndPassword = async (email, password) => {
@@ -108,5 +108,18 @@ export const getCategoriesAndDocuments = async () => {
   const q = query(collectionRef);
 
   const querySnapshot = await getDocs(q);
-  return querySnapshot.docs.map(doc => doc.data());
+  return querySnapshot.docs.map((doc) => doc.data());
+};
+
+export const getCurrentUser = () => {
+  return new Promise((resolve, reject) => {
+    const authStateChangeSub = onAuthStateChanged(
+      auth,
+      (authUser) => {
+        authStateChangeSub();
+        resolve(authUser);
+      },
+      reject
+    );
+  });
 };
