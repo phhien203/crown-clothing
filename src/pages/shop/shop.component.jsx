@@ -1,7 +1,7 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import { Route, Routes } from "react-router-dom";
-import { fetchCategoriesStart } from "../../store/categories/categories.action";
+import { fetchCategoriesStart } from "../../store/categories/categories.slice";
 import CategoriesPreview from "../categories-preview/categories-preview.component";
 import Category from "../category/category.component";
 import "./shop.styles.scss";
