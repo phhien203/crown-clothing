@@ -7,7 +7,7 @@ import Navigation from "./pages/navigation/navigation.component";
 import Shop from "./pages/shop/shop.component";
 import SignIn from "./pages/sign-in/sign-in.component";
 import SignUp from "./pages/sign-up/sign-up.component";
-import { checkUserSession } from "./store/user/user.action";
+import { checkUserSession } from "./store/user/user.slice";
 
 function App() {
   const dispatch = useDispatch();
