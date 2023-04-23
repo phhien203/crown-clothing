@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import {
   emailSignInStart,
   googleSignInStart,
-} from "../../store/user/user.action";
+} from "../../store/user/user.slice";
 import Button, { BUTTON_TYPE_CLASS } from "../button/button.component";
 import FormInput from "../form-input/form-input.component";
 import "./sign-in-form.styles.scss";
@@ -31,7 +31,7 @@ export default function SignInForm() {
     e.preventDefault();
 
     try {
-      dispatch(emailSignInStart(email, password));
+      dispatch(emailSignInStart({ email, password }));
       resetFormValue();
     } catch (error) {
       switch (error.code) {

@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { signUpStart } from "../../store/user/user.action";
+import { signUpStart } from "../../store/user/user.slice";
 import Button from "../button/button.component";
 import FormInput from "../form-input/form-input.component";
 import "./sign-up-form.styles.scss";
@@ -31,7 +31,7 @@ export default function SignUpForm() {
     }
 
     try {
-      dispatch(signUpStart(email, password, displayName));
+      dispatch(signUpStart({ email, password, displayName }));
       resetFormValue();
     } catch (err) {
       console.error(`Error when signing up`, err);
