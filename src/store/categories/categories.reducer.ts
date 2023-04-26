@@ -1,6 +1,13 @@
-import { CATEGORIES_ACTION_TYPE } from "./categories.types";
+import { CATEGORIES_ACTION_TYPE, Category } from "./categories.types";
+import { CategoriesAction } from "./categories.action";
 
-export const CATEGORIES_INITIAL_STATE = {
+export type CategoriesState = {
+  readonly categoriesList: ReadonlyArray<Category>;
+  readonly isLoading: boolean;
+  readonly error: Error | null;
+};
+
+export const CATEGORIES_INITIAL_STATE: CategoriesState = {
   categoriesList: [],
   isLoading: false,
   error: null,
@@ -8,16 +15,9 @@ export const CATEGORIES_INITIAL_STATE = {
 
 export function categoriesReducer(
   state = CATEGORIES_INITIAL_STATE,
-  action = {}
-) {
-  const { type, payload } = action;
-
-  switch (type) {
-    case CATEGORIES_ACTION_TYPE.SET_CATEGORIES_LIST:
-      return {
-        ...state,
-        categoriesList: payload,
-      };
+  action = {} as CategoriesAction
+): CategoriesState {
+  switch (action.type) {
     case CATEGORIES_ACTION_TYPE.FETCH_CATEGORIES_START:
       return {
         ...state,
@@ -27,13 +27,13 @@ export function categoriesReducer(
       return {
         ...state,
         isLoading: false,
-        error: payload,
+        error: action.payload,
       };
     case CATEGORIES_ACTION_TYPE.FETCH_CATEGORIES_SUCCESS:
       return {
         ...state,
         isLoading: false,
-        categoriesList: payload,
+        categoriesList: action.payload,
       };
     default:
       return state;
